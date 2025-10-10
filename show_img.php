@@ -34,3 +34,6 @@ if (isset($_GET['img']) && file_exists($_GET['img'])) {
     }
 ?>
 </html>
+if ($largeur < 512 && $hauteur < 512){
+  				echo "image trop petit (minimum 512pixel par 512 pixel)";
+  			}else{|| $hauteur < 10
