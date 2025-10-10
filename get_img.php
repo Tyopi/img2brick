@@ -18,12 +18,17 @@
         }
 
         
-        $fichier = basename($_FILES['photo']['name']);
+        $fichier = $_FILES['photo']['name'];
         $chemin = $dossier . $fichier;
         move_uploaded_file($_FILES['photo']['tmp_name'], $chemin);
-
         echo "<img src='$chemin';'><br>";
-        echo "<a href='show_img.php?img=" . urlencode($chemin) . "'>Voir l’image sur une autre page</a>";
+        
+        if (isset($chemin) && file_exists($chemin)) {
+    		echo "<a href='show_img.php?img=" . urlencode($chemin) . "'>Voir l’image sur une autre page</a>";
+	} else {
+    		echo "image invalide";
+    	}
+        
     }
     ?>
 </body>
