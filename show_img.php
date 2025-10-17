@@ -16,24 +16,28 @@ if (isset($_GET['img']) && file_exists($_GET['img'])) {
 <body>
     <h1>Voici ton image :</h1>
     <img src="<?php echo htmlspecialchars($image); ?>"><br>    
-    <a href="get_img.php">changer l'image<br>
-    <a href="connecte.php">validez l'image
+	<a href="get_img.php">changer l'image</a><br>
+	<a href="connecte.php">validez l'image</a><br>
     <form method="post" enctype="multipart/form-data">
         <input type="submit" name="lancer">
     </form>
     <?php
     if (isset($_POST['lancer'])) {
-        $sql = "INSERT INTO img (lien, id_uti) VALUES (:lien, :id_uti)";
-    $stmt = $pdo->prepare($sql);
+    	$sql = "INSERT INTO matheo.test_connexion (test) VALUES (:id_uti)";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([
+ 	   ':id_uti' => 1
+	]);
+    	echo "Insertion reussie !";
+    	echo $pdo->query("SELECT current_database();")->fetchColumn();
 
-
-    $stmt->execute([
-        ':lien' => $image,
-        ':id_uti' => 1
-    ]);
+    	if ($stmt) {
+        	echo "oui";
+    	} else {
+        	echo "non";
+        	print_r($stmt->errorInfo());
+    	}
     }
 ?>
 </html>
-if ($largeur < 512 && $hauteur < 512){
-  				echo "image trop petit (minimum 512pixel par 512 pixel)";
-  			}else{|| $hauteur < 10
+
